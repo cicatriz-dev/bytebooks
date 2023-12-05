@@ -2,12 +2,12 @@ import { useSelector } from 'react-redux';
 import PageSection from '../../components/PageSection';
 import { RootState } from '../../store/store';
 import { MdAddCircle, MdOutlineRemoveCircle } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import Breadcrumb from '../../components/Breadcrumb';
 
 const BookDetail = () => {
-	const navigate = useNavigate();
+	const navigate = useHistory();
 	const { selectedBook } = useSelector((state: RootState) => state.books);
 	const [quantity, setQuantity] = useState(1);
 	const quantityWithZero = quantity < 10 ? `0${quantity}` : quantity;
@@ -17,7 +17,7 @@ const BookDetail = () => {
 			<PageSection>
 				<h1 className='text-2xl md:text-4xl text-white font-bold my-5'>Detalhes do Livro</h1>
 			</PageSection>
-			<Breadcrumb onReturnHome={() => navigate('/')} currentPageName='Detalhes do livro' />
+			<Breadcrumb onReturnHome={() => navigate.push('/')} currentPageName='Detalhes do livro' />
 			<div className='mt-20 px-8 md:px-20 xl:px-80 w-full pb-10'>
 				<div className='flex flex-col md:flex-row items-center md:items-start'>
 					<img src={selectedBook?.image} alt={selectedBook?.title} className='w-80' />

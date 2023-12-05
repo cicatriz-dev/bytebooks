@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { Book, setSelectedBook } from '../../store/reducers/books';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 type BookItemProps = { book: Book };
 
 const BookItemComponent: React.FC<BookItemProps> = ({ book }) => {
-	const navigation = useNavigate();
+	const navigation = useHistory();
 	const dispatch = useDispatch<AppDispatch>();
 
 	return (
@@ -15,7 +15,7 @@ const BookItemComponent: React.FC<BookItemProps> = ({ book }) => {
 			className='flex flex-col items-start justify-center w-[246px] m-4 cursor-pointer'
 			onClick={() => {
 				dispatch(setSelectedBook(book));
-				navigation(`/book/${book.id}`);
+				navigation.push(`/book/${book.id}`);
 			}}
 		>
 			<img src={book.image} alt={book.title} loading='lazy' className='hover:shadow-lg' />

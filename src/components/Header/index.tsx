@@ -4,13 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsCartOpen } from '../../store/reducers/cart';
 
 import Cart from '../Cart';
+import { useHistory } from 'react-router-dom';
 const Header: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
+	const navigate = useHistory();
 	const { isCartOpen } = useSelector((state: RootState) => state.cart);
 	return (
 		<>
 			<div className='flex items-center bg-white h-20 px-10 w-full py-[18px] justify-between'>
-				<img alt='ByteBooks Logo' src='./logo.webp' height={70} />
+				<img
+					alt='ByteBooks Logo'
+					src='./logo.webp'
+					className='cursor-pointer hover:opacity-80'
+					height={70}
+					onClick={() => navigate.push('/')}
+				/>
 				<div
 					className='flex items-center hover:opacity-80 cursor-pointer'
 					onClick={() => dispatch(setIsCartOpen(true))}
